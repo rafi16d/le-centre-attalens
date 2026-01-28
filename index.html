@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Le Centre Attalens - Élections 2026</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style id="compiled-css" type="text/css">
+      /* Simulation de l'import de la police Modern Era */
+        @font-face {
+            font-family: 'Modern Era';
+            src: url('https://le-centre.ch/wp-content/themes/diemitte/fonts/ModernEra-Regular.woff2') format('woff2'); /* À remplacer par le chemin réel */
+            font-weight: 400;
+            font-style: normal;
+            font-display: swap; /* Eco-friendly: affichage rapide */
+        }
+        @font-face {
+            font-family: 'Modern Era';
+            src: url('https://le-centre.ch/wp-content/themes/diemitte/fonts/ModernEra-ExtraBold.woff2') format('woff2');
+            font-weight: 700;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        /* Utilitaires pour l'accessibilité et l'éco-conception */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border-width: 0;
+        }
+
+        [x-cloak] { display: none !important; }
+
+      /* EOS */
+    </style>
+
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.13.3/dist/cdn.min.js"></script>
+
+<script>
+tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'centre-blue': '#003C69',
+                        'centre-orange': '#FF9B00',
+                        'centre-orange-hover': '#e68a00',
+                    },
+                    fontFamily: {
+                        'sans': ['Modern Era', 'sans-serif'],
+                    }
+                }
+            }
+        }
+
+         function electionData() {
+            return {
+                modalOpen: false,
+                projectModalOpen: false,
+                selectedCandidate: {},
+                
+                openCandidateModal(candidat) {
+                    this.selectedCandidate = candidat;
+                    this.modalOpen = true;
+                },
+
+                // Données Communales
+                candidatsCommunal: [
+                    { id: '1', name: 'Aurélien Espinasse', role: 'Conseiller communal sortant', tag: 'sortant', img: 'https://placehold.co/400x400?text=Aurélien', age: 'XX ans', situation: 'Marié, X enfants', ville: 'Attalens', job: 'Profession', bio: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam non urna er, sed fringilla magna. Integer in risus sed libero.' },
+                    { id: '2', name: 'Audrey Pasquier', role: 'Candidate', tag: false, img: 'https://placehold.co/400x400?text=Audrey', age: 'XX ans', situation: 'En couple', ville: 'Attalens', job: 'Profession', bio: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam non urna er, sed fringilla magna.' },
+                    { id: '3', name: 'Juan-Carlos Stella', role: 'Candidat', tag: false, img: 'https://placehold.co/400x400?text=Juan-Carlos', age: 'XX ans', situation: 'Marié', ville: 'Attalens', job: 'Profession', bio: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam non urna er, sed fringilla magna.' },
+                ],
+
+                // Données Conseil Général
+                candidatsGeneral: [
+                    { id: '1', name: 'Aurélien Espinasse', tag: false, img: 'https://placehold.co/400x400?text=Aurélien', age: 'XX ans', situation: 'Marié, X enfants', ville: 'Attalens', job: 'Profession', bio: 'Lorem ipsum dolor sit amet.' },
+                    { id: '2', name: 'Audrey Pasquier', tag: false, img: 'https://placehold.co/400x400?text=Audrey', age: 'XX ans', situation: 'En couple', ville: 'Attalens', job: 'Profession', bio: 'Lorem ipsum dolor sit amet.' },
+                    { id: '3', name: 'Juan-Carlos Stella', tag: false, img: 'https://placehold.co/400x400?text=Juan-Carlos', age: 'XX ans', situation: 'Marié', ville: 'Attalens', job: 'Profession', bio: 'Lorem ipsum dolor sit amet.' },
+                    { id: '4', name: 'Isabelle Bonvin-Dufresne', tag: false, tag: 'sortante', img: 'https://placehold.co/400x400?text=Isabelle', age: 'XX ans', situation: 'Mariée', ville: 'Attalens', job: 'Profession', bio: 'Lorem ipsum dolor sit amet.' },
+                    { id: '5', name: 'Fanny Jachiet-Herrbach', tag: false, img: 'https://placehold.co/400x400?text=Fanny', age: 'XX ans', situation: 'Situation', ville: 'Attalens', job: 'Profession', bio: 'Lorem ipsum dolor sit amet.' },
+                    { id: '6', name: 'Corinne Stella', tag: false, img: 'https://placehold.co/400x400?text=Corinne', age: 'XX ans', situation: 'Situation', ville: 'Attalens', job: 'Profession', bio: 'Lorem ipsum dolor sit amet.' },
+                    { id: '7', name: 'Pierre Emonet', tag: false, img: 'https://placehold.co/400x400?text=Pierre', age: 'XX ans', situation: 'Situation', ville: 'Attalens', job: 'Profession', bio: 'Lorem ipsum dolor sit amet.' },
+                    { id: '8', name: 'Adrien Emonet', tag: false, tag: 'sortant', img: 'https://placehold.co/400x400?text=Adrien', age: 'XX ans', situation: 'Situation', ville: 'Attalens', job: 'Profession', bio: 'Lorem ipsum dolor sit amet.' },
+                    { id: '9', name: 'Jean-Marie Allaz', tag: false, img: 'https://placehold.co/400x400?text=Jean-Marie', age: 'XX ans', situation: 'Situation', ville: 'Attalens', job: 'Profession', bio: 'Lorem ipsum dolor sit amet.' },
+                    { id: '10', name: 'Bastian Galley', tag: false, tag: 'sortant', img: 'https://placehold.co/400x400?text=Bastian', age: 'XX ans', situation: 'Situation', ville: 'Attalens', job: 'Profession', bio: 'Lorem ipsum dolor sit amet.' },
+                    { id: '11', name: 'Renaud Gauderon', tag: false, tag: 'sortant', img: 'https://placehold.co/400x400?text=Renaud', age: 'XX ans', situation: 'Situation', ville: 'Attalens', job: 'Profession', bio: 'Lorem ipsum dolor sit amet.' },
+                    { id: '12', name: 'Frédéric Jachiet', tag: false, img: 'https://placehold.co/400x400?text=Frédéric', age: 'XX ans', situation: 'Situation', ville: 'Attalens', job: 'Profession', bio: 'Lorem ipsum dolor sit amet.' },
+                    // RAPHAËL GABRIEL : Exemple complet
+                    { id: '13', name: 'Raphaël Gabriel', tag: false, img: 'https://placehold.co/400x400?text=Raphaël', age: '27 ans', situation: 'Marié, 2 enfants', ville: 'Attalens', job: 'Responsable Vente', bio: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.' },
+                    { id: '14', name: 'Thibault Lefebvre', tag: false, img: 'https://placehold.co/400x400?text=Thibault', age: 'XX ans', situation: 'Situation', ville: 'Attalens', job: 'Profession', bio: 'Lorem ipsum dolor sit amet.' },
+                ]
+            }
+        }
+</script>
+
+</head>
+
+<body class="bg-gray-50 text-gray-800 font-sans antialiased" x-data="electionData()">
+
+    <header class="relative h-screen max-h-[800px] flex items-center justify-center overflow-hidden">
+        <div class="absolute top-4 left-4 z-20 md:top-8 md:left-8">
+            <div class="bg-white/90 p-3 rounded-lg">
+                <img src="https://le-centre.ch/wp-content/uploads/2021/04/le-centre-logo.svg" alt="Logo Le Centre" class="h-8 md:h-12 w-auto">
+            </div>
+        </div>
+        <div class="absolute inset-0 z-0">
+            <img src="https://placehold.co/1920x1080/003C69/FFFFFF?text=Photo+de+groupe+Candidats" 
+                 alt="Les candidats du Centre Attalens" 
+                 class="w-full h-full object-cover object-center opacity-90">
+            <div class="absolute inset-0 bg-gradient-to-t from-centre-blue/90 via-centre-blue/50 to-transparent"></div>
+        </div>
+
+        <div class="relative z-10 text-center px-4 max-w-4xl mx-auto mt-10 flex flex-col items-center">
+            
+
+            <h1 class="text-5xl md:text-7xl font-bold text-white mb-6 drop-shadow-md tracking-tight">
+                Attalens 2026
+            </h1>
+            <p class="text-xl text-gray-100 mb-10 font-light">
+                Liberté, Solidarité, Responsabilité.
+            </p>
+            <div class="flex flex-col md:flex-row gap-4 justify-center w-full md:w-auto">
+                <a href="#candidats" 
+                   class="bg-centre-orange text-white font-bold py-3 px-8 rounded-full shadow-lg hover:bg-centre-orange-hover transition transform hover:-translate-y-1 focus:outline-none">
+                    Nos candidats
+                </a>
+                <a href="#info-vote" 
+                   class="bg-transparent border-2 border-white text-white font-bold py-3 px-8 rounded-full hover:bg-white hover:text-centre-blue transition transform hover:-translate-y-1">
+                    Comment voter ?
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <section id="valeurs" class="py-20 px-4 bg-white">
+        <div class="max-w-6xl mx-auto text-center">
+            <h2 class="text-3xl font-bold text-centre-blue mb-12">Nos Valeurs</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-16">
+                <div class="flex flex-col items-center">
+                    <div class="w-16 h-16 bg-centre-orange/10 rounded-full flex items-center justify-center mb-4 text-centre-orange">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0z" /></svg>
+                    </div>
+                    <h3 class="font-bold text-lg mb-2">Proximité</h3>
+                    <p class="text-gray-600">À l'écoute de chaque citoyen pour construire ensemble.</p>
+                </div>
+                <div class="flex flex-col items-center">
+                    <div class="w-16 h-16 bg-centre-orange/10 rounded-full flex items-center justify-center mb-4 text-centre-orange">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                    </div>
+                    <h3 class="font-bold text-lg mb-2">Durabilité</h3>
+                    <p class="text-gray-600">Un développement responsable pour notre avenir commun.</p>
+                </div>
+                <div class="flex flex-col items-center">
+                    <div class="w-16 h-16 bg-centre-orange/10 rounded-full flex items-center justify-center mb-4 text-centre-orange">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3" /></svg>
+                    </div>
+                    <h3 class="font-bold text-lg mb-2">Équilibre</h3>
+                    <p class="text-gray-600">Des solutions pragmatiques pour le bien de tous.</p>
+                </div>
+            </div>
+
+            <button @click="projectModalOpen = true" 
+                class="inline-block border-2 border-centre-blue text-centre-blue font-bold py-3 px-8 rounded-full hover:bg-centre-blue hover:text-white transition duration-300">
+                Découvrir notre projet politique
+            </button>
+        </div>
+    </section>
+
+    <section id="candidats" class="py-20 px-4 bg-gray-50">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-3xl font-bold text-centre-blue mb-10 text-center">Nos Candidats</h2>
+
+            <div class="mb-16">
+                <h3 class="text-2xl font-semibold text-gray-700 mb-8 pl-4 border-l-4 border-centre-orange">Conseil Communal (Liste n°2)</h3>
+                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-8">
+                    <template x-for="candidat in candidatsCommunal" :key="`communal${candidat.id}`">
+                        <div @click="openCandidateModal(candidat)" 
+                             class="group relative cursor-pointer aspect-square bg-white shadow-md rounded-lg overflow-hidden transform hover:scale-105 transition duration-300">
+                            <img :src="candidat.img" :alt="candidat.name" loading="lazy" class="w-full h-full object-cover">
+                            <div x-text="candidat.id" class="absolute font-semibold top-2 left-2 text-centre-blue text-xs px-2 py-1 rounded"></div>
+                            <div x-show="candidat.tag" x-text="candidat.tag" class="absolute top-2 right-2 bg-centre-orange text-white text-xs px-2 py-1 rounded"></div>
+                            <div class="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/80 to-transparent p-5">
+                                <p class="text-white font-bold truncate" x-text="candidat.name"></p>
+                                <p class="text-gray-300 text-sm truncate" x-text="`${candidat.age} | ${candidat.job}`"></p>
+                            </div>
+                        </div>
+                    </template>
+                </div>
+            </div>
+
+            <div>
+                <h3 class="text-2xl font-semibold text-gray-700 mb-8 pl-4 border-l-4 border-centre-orange">Conseil Général (Liste n°2)</h3>
+                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+                    <template x-for="candidat in candidatsGeneral" :key="`general${candidat.id}`">
+                        <div @click="openCandidateModal(candidat)" class="cursor-pointer group relative aspect-square rounded-lg overflow-hidden bg-white shadow-sm">
+                            <img :src="candidat.img" :alt="candidat.name" loading="lazy" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition duration-300">
+                            <div x-text="candidat.id" class="absolute font-semibold top-2 left-2 text-centre-blue text-xs px-2 py-1 rounded"></div>
+                            <div x-show="candidat.tag" x-text="candidat.tag" class="absolute top-2 right-2 bg-centre-orange text-white text-xs px-2 py-1 rounded"></div>
+                            <div class="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/80 to-transparent p-5">
+                                <span class="text-white text-sm font-bold" x-text="candidat.name"></span>
+                                <p class="text-gray-300 text-sm truncate" x-text="`${candidat.age} | ${candidat.job}`"></p>
+                            </div>
+                        </div>
+                    </template>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div x-show="modalOpen" x-cloak 
+         class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm"
+         x-transition:enter="transition ease-out duration-300"
+         x-transition:enter-start="opacity-0"
+         x-transition:enter-end="opacity-100"
+         x-transition:leave="transition ease-in duration-200"
+         x-transition:leave-start="opacity-100"
+         x-transition:leave-end="opacity-0">
+        
+        <div @click.away="modalOpen = false" class="bg-white rounded-xl shadow-2xl max-w-2xl w-full overflow-hidden relative flex flex-col md:flex-row">
+            <button @click="modalOpen = false" class="absolute top-4 right-4 text-white md:text-gray-500 hover:text-gray-800 z-20 bg-black/20 md:bg-transparent rounded-full p-1">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
+            </button>
+            
+            <div class="w-full md:w-5/12 h-64 md:h-auto relative">
+                <img :src="selectedCandidate.img" class="absolute inset-0 w-full h-full object-cover" alt="Candidat">
+            </div>
+
+            <div class="w-full md:w-7/12 p-8 flex flex-col justify-center">
+                <h3 class="text-3xl font-bold text-centre-blue mb-1" x-text="selectedCandidate.name"></h3>
+                <p class="text-centre-orange font-semibold text-lg mb-6" x-text="selectedCandidate.job"></p>
+                
+                <div class="space-y-2 mb-6 text-sm text-gray-600">
+                    <div class="flex items-center">
+                        <span class="w-24 font-bold text-gray-800">Âge :</span>
+                        <span x-text="selectedCandidate.age"></span>
+                    </div>
+                    <div class="flex items-center">
+                        <span class="w-24 font-bold text-gray-800">Situation :</span>
+                        <span x-text="selectedCandidate.situation"></span>
+                    </div>
+                    <div class="flex items-center">
+                        <span class="w-24 font-bold text-gray-800">Ville :</span>
+                        <span x-text="selectedCandidate.ville"></span>
+                    </div>
+                </div>
+
+                <div class="border-t border-gray-100 pt-4">
+                    <p class="text-gray-700 text-sm leading-relaxed italic" x-text="selectedCandidate.bio"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div x-show="projectModalOpen" x-cloak 
+         class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm"
+         x-transition.opacity>
+        
+        <div @click.away="projectModalOpen = false" class="bg-white rounded-xl shadow-2xl max-w-3xl w-full relative max-h-[90vh] overflow-y-auto">
+            <div class="sticky top-0 bg-white z-10 p-6 border-b border-gray-100 flex justify-between items-center">
+                <h3 class="text-2xl font-bold text-centre-blue">Notre Projet pour Attalens 2026-2031</h3>
+                <button @click="projectModalOpen = false" class="text-gray-400 hover:text-centre-orange">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
+                </button>
+            </div>
+            
+            <div class="p-8 text-gray-700 leading-relaxed space-y-4">
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+                <h4 class="font-bold text-centre-orange text-lg mt-4">1. Une commune vivante</h4>
+                <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.</p>
+                <h4 class="font-bold text-centre-orange text-lg mt-4">2. Un environnement préservé</h4>
+                <p>Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?</p>
+                <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus.</p>
+            </div>
+            
+            <div class="p-6 bg-gray-50 border-t border-gray-100 text-center">
+                <button @click="projectModalOpen = false" class="text-centre-blue font-bold hover:underline">Fermer</button>
+            </div>
+        </div>
+    </div>
+
+    <section id="info-vote" class="py-20 bg-centre-blue text-white">
+        <div class="max-w-4xl mx-auto px-4">
+            <h2 class="text-3xl font-bold mb-12 text-center">Voter, c'est simple !</h2>
+            <div class="space-y-8">
+                <div class="flex items-start">
+                    <div class="flex-shrink-0 w-12 h-12 rounded-full bg-centre-orange flex items-center justify-center font-bold text-xl mr-4 text-white">1</div>
+                    <div><h3 class="font-bold text-xl mb-1">Remplissez votre bulletin</h3><p class="text-blue-100">Insérez la <strong>Liste n°2</strong> complète dans l'enveloppe de vote.</p></div>
+                </div>
+                <div class="flex items-start">
+                    <div class="flex-shrink-0 w-12 h-12 rounded-full bg-centre-orange flex items-center justify-center font-bold text-xl mr-4 text-white">2</div>
+                    <div><h3 class="font-bold text-xl mb-1">Signez votre carte</h3><p class="text-blue-100">N'oubliez pas de signer votre carte de vote, sinon votre voix est nulle.</p></div>
+                </div>
+                <div class="flex items-start">
+                    <div class="flex-shrink-0 w-12 h-12 rounded-full bg-centre-orange flex items-center justify-center font-bold text-xl mr-4 text-white">3</div>
+                    <div>
+                        <h3 class="font-bold text-xl mb-1">Postez ou Déposez</h3>
+                        <p class="text-blue-100 mb-4">Glissez le tout dans l'enveloppe de transmission.</p>
+                        <div class="bg-white/10 p-4 rounded-lg border border-white/20">
+                            <ul class="space-y-2 text-sm">
+                                <li class="flex items-center"><strong>Par la poste :</strong>&nbsp;Avant le jeudi 5 mars.</li>
+                                <li class="flex items-center"><strong>À la commune :</strong>&nbsp;Jusqu'au dimanche 8 mars (boîte aux lettres).</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16 px-4 bg-gray-100">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-2xl font-bold text-centre-blue mb-6">Comprendre les institutions</h2>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="bg-white p-6 rounded-lg shadow-sm">
+                    <h3 class="text-lg font-bold text-centre-orange mb-2">Conseil Communal</h3>
+                    <p class="text-gray-600 text-sm">C'est l'organe <strong>exécutif</strong>. Il est responsable de l'administration quotidienne de la commune, de la mise en œuvre des décisions et de la gestion des dicastères.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-sm">
+                    <h3 class="text-lg font-bold text-centre-orange mb-2">Conseil Général</h3>
+                    <p class="text-gray-600 text-sm">C'est l'organe <strong>législatif</strong>. Il vote le budget, les comptes et les règlements communaux, et contrôle l'action du Conseil Communal.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-gray-900 text-gray-400 py-12 px-4">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center">
+            <div class="mb-6 md:mb-0 text-center md:text-left">
+                <h4 class="text-white font-bold text-lg">Le Centre Attalens</h4>
+                <p class="text-sm mt-2">Ensemble pour notre commune.</p>
+            </div>
+            <div class="flex space-x-6 mb-6 md:mb-0">
+                <a href="https://www.instagram.com/le_centre_attalens/" class="hover:text-centre-orange transition">Facebook</a>
+                <a href="https://www.instagram.com/le_centre_attalens/" class="hover:text-centre-orange transition">Instagram</a>
+            </div>
+            <div class="text-center md:text-right">
+                <p class="text-white font-bold text-xl">8 Mars 2026</p>
+                <p class="text-xs mt-1">Élections Communales</p>
+            </div>
+        </div>
+        <div class="max-w-6xl mx-auto mt-8 border-t border-gray-800 pt-8 text-xs text-center">
+            &copy; 2026 Le Centre Attalens. Tous droits réservés.
+        </div>
+    </footer>
+
+</body>
+</html>
