@@ -353,7 +353,7 @@ tailwind.config = {
                     <template x-for="candidat in candidatsCommunal" :key="`communal${candidat.id}`">
                         <div @click="openCandidateModal(candidat)" 
                              class="group relative cursor-pointer aspect-square bg-white shadow-md rounded-lg overflow-hidden transform hover:scale-105 transition duration-300">
-                            <img :src="candidat.img" :alt="candidat.name" loading="lazy" class="w-full h-full object-cover">
+                            <img :src="candidat.img" :alt="candidat.name" loading="lazy" class="w-full h-full object-cover object-top">
                             <div x-text="candidat.id" class="absolute font-semibold top-2 left-2 text-centre-blue text-xs px-2 py-1 rounded"></div>
                             <div x-show="candidat.tag" x-text="candidat.tag" class="absolute top-2 right-2 bg-centre-orange text-white text-xs px-2 py-1 rounded"></div>
                             <div class="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/80 to-transparent p-5">
@@ -370,7 +370,7 @@ tailwind.config = {
                 <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
                     <template x-for="candidat in candidatsGeneral" :key="`general${candidat.id}`">
                         <div @click="openCandidateModal(candidat)" class="group relative cursor-pointer aspect-square bg-white shadow-md rounded-lg overflow-hidden transform hover:scale-105 transition duration-300">
-                            <img :src="candidat.img" :alt="candidat.name" loading="lazy" class="w-full h-full object-cover">
+                            <img :src="candidat.img" :alt="candidat.name" loading="lazy" class="w-full h-full object-cover object-top">
                             <div x-text="candidat.id" class="absolute font-semibold top-2 left-2 text-centre-blue text-xs px-2 py-1 rounded"></div>
                             <div x-show="candidat.tag" x-text="candidat.tag" class="absolute top-2 right-2 bg-centre-orange text-white text-xs px-2 py-1 rounded"></div>
                             <div class="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/80 to-transparent p-5">
