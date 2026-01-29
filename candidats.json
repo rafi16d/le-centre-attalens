@@ -1,0 +1,56 @@
+{
+  "candidatsCommunal": [
+    {
+      "id": "c1",
+      "name": "Aurélien Espinasse",
+      "role": "Conseiller communal sortant",
+      "tag": "Sortant",
+      "img": "img/Aurélien_Espinasse_8_noBackground_1080x1080_crop.png",
+      "age": "45 ans",
+      "situation": "Marié, 2 enfants",
+      "ville": "Attalens",
+      "job": "Juge assesseur et Chef d’entreprise",
+      "bio": "Mon engagement : pragmatisme et culture pour nos identités. Attalens et Tatroz face aux défis."
+    },
+    {
+      "id": "c2",
+      "name": "Audrey Pasquier",
+      "role": "Candidate",
+      "tag": false,
+      "img": "img/Audrey_Pasquier_2_noBackground_1080x1080_crop.png",
+      "age": "34 ans",
+      "situation": "Mariée, 3 enfants",
+      "ville": "Tatroz",
+      "job": "Assistante de direction",
+      "bio": "Native de Tatroz, je m’engage au Conseil général pour des décisions utiles au quotidien."
+    },
+    {
+      "id": "c3",
+      "name": "Juan-Carlos Stella",
+      "role": "Candidat",
+      "tag": false,
+      "img": "img/Juan_Carlo_Stella_1_noBackground_1080x1080_crop.png",
+      "age": "48 ans",
+      "situation": "Marié, 3 enfants",
+      "ville": "Attalens",
+      "job": "Chef d’entreprise",
+      "bio": "Je souhaite m’engager pour le bien de notre commune."
+    }
+  ],
+  "candidatsGeneral": [
+    {
+      "id": "g1",
+      "name": "Aurélien Espinasse",
+      "tag": "Sortant",
+      "img": "img/Aurélien_Espinasse_8_noBackground_1080x1080_crop.png",
+      "age": "45 ans",
+      "situation": "Marié, 2 enfants",
+      "ville": "Attalens",
+      "job": "Juge assesseur et Chef d’entreprise",
+      "bio": "Mon engagement : pragmatisme et culture pour nos identités. Attalens et Tatroz face aux défis."
+    },
+    {
+      "id": "g2",
+      "name": "Audrey Pasquier",
+      "tag": false,
+      "img": "img/Audrey_Pasquier_2_noBackground_1080x1080_crop.png",
